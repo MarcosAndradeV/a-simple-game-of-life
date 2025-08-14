@@ -39,19 +39,14 @@ int main(void) {
     {
         for (int col = 0; col < GRID_SIZE; col++)
         {
-            int x = col * CELL_SIZE;
-            int y = row * CELL_SIZE + 30;
-
-            Color cellColor = ((row + col) % 2 == 0) ? LIGHTCOLOR : DARKCOLOR;
-
             Cell cell = (Cell) {
                 .rect = (Rectangle) {
-                    .x = x,
-                    .y = y,
+                    .x = col * CELL_SIZE,
+                    .y = row * CELL_SIZE + 30,
                     .width = CELL_SIZE,
                     .height = CELL_SIZE,
                 },
-                .color = cellColor
+                .color = ((row + col) % 2 == 0) ? LIGHTCOLOR : DARKCOLOR,
             };
             da_append(&grid, cell);
         }
