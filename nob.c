@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     nob_cc_output(&cmd, "build/jewel");
     nob_cc_flags(&cmd);
     cmd_append(&cmd, "-lraylib", "-lGL", "-lm", "-lpthread", "-ldl", "-lrt", "-lX11");
-    if(!nob_cmd_run_sync_and_reset(&cmd)) return 1;
+    if(!cmd_run_sync_and_reset(&cmd)) return 1;
 
     if(argc <= 1) return 0;
 
@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 
     if(strcmp(arg, "run")) {
         cmd_append(&cmd, "build/jewel");
-        if(!nob_cmd_run_sync_and_reset(&cmd)) return 1;
+        if(!cmd_run_sync_and_reset(&cmd)) return 1;
     }
 
     return 0;
