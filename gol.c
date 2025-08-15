@@ -7,7 +7,7 @@
 #define CELL_SIZE (960 / GRID_MULT)
 #define WINDOW_WIDTH (GRID_SIZE * CELL_SIZE)
 #define WINDOW_HEIGHT (GRID_SIZE * CELL_SIZE + 40)
-
+#define UI_OFFSET 30
 
 #define SIMULATION_SPEED 30.0f
 
@@ -70,7 +70,7 @@ int main(void) {
             Cell cell = (Cell) {
                 .rect = (Rectangle) {
                     .x = col * cell_size,
-                    .y = row * cell_size + 30,
+                    .y = row * cell_size + UI_OFFSET,
                     .width = cell_size,
                     .height = cell_size,
                 },
@@ -90,7 +90,7 @@ int main(void) {
 
                 da_foreach(Cell, it, &grid) {
                     int col = it->rect.x / cell_size;
-                    int row = (it->rect.y - 30) / cell_size;
+                    int row = (it->rect.y - UI_OFFSET) / cell_size;
                     int n = countNeighbors(&grid, row, col);
                     if (it->active) {
                         if (n < 2 || n > 3) {
@@ -155,7 +155,7 @@ int main(void) {
             DrawRectangleLinesEx(it->rect, GRIDLINETICKNESS, GRIDLINECOLOR);
         }
 
-        DrawRectangleLines(0, 30, WINDOW_WIDTH, GRID_SIZE * CELL_SIZE, BLACK);
+        DrawRectangleLines(0, UI_OFFSET, WINDOW_WIDTH, GRID_SIZE * CELL_SIZE, BLACK);
 
         EndDrawing();
     }
