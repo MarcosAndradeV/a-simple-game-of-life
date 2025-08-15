@@ -9,10 +9,10 @@ int main(int argc, char** argv) {
 
     Cmd cmd = {0};
     nob_cc(&cmd);
-    nob_cc_inputs(&cmd, "jewel.c");
-    nob_cc_output(&cmd, "build/jewel");
+    nob_cc_inputs(&cmd, "gol.c");
+    nob_cc_output(&cmd, "build/gol");
     nob_cc_flags(&cmd);
-    cmd_append(&cmd, "-lraylib", "-lGL", "-lm", "-lpthread", "-ldl", "-lrt", "-lX11");
+    cmd_append(&cmd, "-ggdb", "-lraylib", "-lGL", "-lm", "-lpthread", "-ldl", "-lrt", "-lX11");
     if(!cmd_run_sync_and_reset(&cmd)) return 1;
 
     if(argc <= 1) return 0;
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     const char* arg = shift(argv, argc);
 
     if(strcmp(arg, "run")) {
-        cmd_append(&cmd, "build/jewel");
+        cmd_append(&cmd, "build/gol");
         if(!cmd_run_sync_and_reset(&cmd)) return 1;
     }
 
